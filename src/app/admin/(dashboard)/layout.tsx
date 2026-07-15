@@ -1,6 +1,5 @@
 import { redirect } from "next/navigation";
-import { AdminSidebar } from "@/components/layout/admin-sidebar";
-import { AdminHeader } from "@/components/layout/admin-header";
+import { AdminShell } from "@/components/layout/admin-shell";
 import { SupabaseNotConfigured } from "@/components/supabase-not-configured";
 import { createClient } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
@@ -25,13 +24,5 @@ export default async function AdminDashboardLayout({ children }: { children: Rea
     redirect("/admin/login");
   }
 
-  return (
-    <div className="flex min-h-screen bg-neutral-50 dark:bg-neutral-950">
-      <AdminSidebar />
-      <div className="flex min-w-0 flex-1 flex-col">
-        <AdminHeader email={user.email} />
-        <main className="flex-1 px-4 py-6 sm:px-6">{children}</main>
-      </div>
-    </div>
-  );
+  return <AdminShell email={user.email}>{children}</AdminShell>;
 }
