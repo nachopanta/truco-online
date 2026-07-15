@@ -12,7 +12,7 @@ export function SupabaseNotConfigured() {
           </p>
           <p className="max-w-sm text-sm text-neutral-500 dark:text-neutral-500">
             Definí <code className="rounded bg-neutral-100 px-1 py-0.5 dark:bg-neutral-800">NEXT_PUBLIC_SUPABASE_URL</code> y{" "}
-            <code className="rounded bg-neutral-100 px-1 py-0.5 dark:bg-neutral-800">NEXT_PUBLIC_SUPABASE_ANON_KEY</code> en{" "}
+            <code className="rounded bg-neutral-100 px-1 py-0.5 dark:bg-neutral-800">NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY</code> en{" "}
             <code className="rounded bg-neutral-100 px-1 py-0.5 dark:bg-neutral-800">.env.local</code> para ver datos reales.
           </p>
         </div>

@@ -20,7 +20,7 @@ consulta (calendario, resultados, posiciones, estadísticas, historial).
    ```
 
 2. Crear un proyecto en [supabase.com](https://supabase.com) y copiar `.env.example` a
-   `.env.local` con la URL y la anon key del proyecto (Project Settings → API):
+   `.env.local` con la URL y la publishable key del proyecto (Project Settings → API):
 
    ```bash
    cp .env.example .env.local
