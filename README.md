@@ -77,10 +77,24 @@ partidos jugados (no se guardan como tabla aparte), y los ascensos/descensos/cam
 quedan registrados en `promotions_relegations` y `seasons.champion_team_id` al cerrar
 la temporada.
 
+## Flujo de una temporada
+
+1. Crear la temporada (genera sus 4 divisiones automáticamente).
+2. Inscribir equipos en cada división.
+3. Generar el calendario de cada división (todos contra todos, a una o dos ruedas)
+   desde la tarjeta de la división.
+4. Cargar resultados en *Temporada → Cargar resultados* a medida que se juegan los
+   partidos. Las posiciones se recalculan solas.
+5. Al terminar, usar *Finalizar temporada*: calcula la tabla final de cada división,
+   registra ascensos/descensos según los cupos configurados y define el campeón
+   (equipo 1° de la división de nivel 1).
+
 ## Próximas etapas
 
-Esta primera etapa cubre la base: autenticación, esquema completo y CRUD de
-temporadas/divisiones/equipos/jugadores, más el portal público leyendo esos datos.
-Quedan para siguientes iteraciones: generación automática del calendario todos-contra-
-todos, carga de resultados con cálculo de ascensos/descensos al cerrar temporada,
-rachas y ranking histórico multi-temporada, y exportaciones a Excel/PDF/backups.
+Cubierto hasta acá: autenticación, esquema completo, CRUD de temporadas/divisiones/
+equipos/jugadores, generación automática de calendario, carga de resultados, cierre de
+temporada con ascensos/descensos/campeón, y portal público leyendo todo eso.
+
+Queda para siguientes iteraciones: carga de datos históricos de temporadas pasadas,
+rachas y ranking histórico multi-temporada más elaborado, y exportaciones a
+Excel/PDF/backups.

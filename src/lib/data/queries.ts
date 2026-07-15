@@ -106,6 +106,25 @@ export async function getPromotionsRelegations(
   return (data ?? []) as unknown as (PromotionRelegation & { team: Team; division: Division })[];
 }
 
+export async function getMatchStatsForSeason(
+  seasonId: string
+): Promise<Record<string, { total: number; jugado: number }>> {
+  const supabase = await createClient();
+  const { data } = await supabase
+    .from("matches")
+    .select("division_id, status")
+    .eq("season_id", seasonId);
+
+  const stats: Record<string, { total: number; jugado: number }> = {};
+  for (const row of data ?? []) {
+    const entry = stats[row.division_id] ?? { total: 0, jugado: 0 };
+    entry.total += 1;
+    if (row.status === "jugado") entry.jugado += 1;
+    stats[row.division_id] = entry;
+  }
+  return stats;
+}
+
 export async function getDashboardStats() {
   const supabase = await createClient();
   const [{ count: seasons }, { count: teams }, { count: players }, { count: upcomingMatches }] =

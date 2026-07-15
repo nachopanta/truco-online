@@ -7,15 +7,23 @@ import { Input, Label, Select } from "@/components/ui/input";
 import { DeleteButton } from "@/components/delete-button";
 import type { Division, SeasonTeam, Team } from "@/types/database.types";
 import { addTeamToDivision, removeSeasonTeam, updateDivision, type DivisionFormState } from "./actions";
+import { ScheduleForm } from "./schedule-form";
 
 interface DivisionCardProps {
   seasonId: string;
   division: Division;
   seasonTeams: (SeasonTeam & { team: Team })[];
   availableTeams: Team[];
+  matchStats?: { total: number; jugado: number };
 }
 
-export function DivisionCard({ seasonId, division, seasonTeams, availableTeams }: DivisionCardProps) {
+export function DivisionCard({
+  seasonId,
+  division,
+  seasonTeams,
+  availableTeams,
+  matchStats,
+}: DivisionCardProps) {
   const [state, formAction, pending] = useActionState<DivisionFormState, FormData>(
     updateDivision.bind(null, division.id, seasonId),
     {}
@@ -97,6 +105,11 @@ export function DivisionCard({ seasonId, division, seasonTeams, availableTeams }
               </Button>
             </form>
           )}
+        </div>
+
+        <div className="border-t border-neutral-200 pt-4 dark:border-neutral-800">
+          <p className="mb-2 text-sm font-medium text-neutral-700 dark:text-neutral-300">Calendario</p>
+          <ScheduleForm seasonId={seasonId} divisionId={division.id} matchStats={matchStats} />
         </div>
       </CardContent>
     </Card>
