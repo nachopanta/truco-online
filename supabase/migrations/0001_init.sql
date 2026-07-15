@@ -158,7 +158,9 @@ create table if not exists public.promotions_relegations (
 -- Vista de posiciones: se calcula a partir de los partidos jugados.
 -- Puntos: victoria = 3, empate = 1, derrota = 0.
 -- ---------------------------------------------------------------------------
-create or replace view public.standings as
+create or replace view public.standings
+with (security_invoker = true)
+as
 with results as (
   select
     m.season_id,
